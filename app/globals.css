@@ -1,0 +1,109 @@
+:root {
+  --color-1: #1a0b2e; /* Darkest purple */
+  --color-2: #3f1451; /* Dark purple */
+  --color-3: #7b3183; /* Medium purple */
+  --color-4: #c576b6; /* Light purple/pink */
+  --color-5: #f6dae9; /* Lightest pink */
+
+  --bg-color: var(--color-1);
+  --bg-gradient: radial-gradient(circle at 50% 0%, var(--color-2) 0%, var(--color-1) 70%, #0d041a 100%);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-tertiary: rgba(255, 255, 255, 0.5);
+  --btn-primary-bg: var(--color-5);
+  --btn-primary-text: var(--color-1);
+  --btn-secondary-bg: rgba(255, 255, 255, 0.1);
+  --btn-secondary-text: #ffffff;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --bg-card: rgba(255, 255, 255, 0.02);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --font-family: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: var(--font-family);
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animations */
+@keyframes floatUp {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes floatDown {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(20px) rotate(-2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Glassmorphism effects */
+.glass {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+}
+
+/* Base button styles */
+button {
+  font-family: var(--font-family);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  border-radius: 999px; /* Pill shape */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.app-container {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  --mouseX: 0px;
+  --mouseY: 0px;
+}
+
+.content-overlay {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-start-converting {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  border-radius: 999px;
+}

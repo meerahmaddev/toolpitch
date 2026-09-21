@@ -1,0 +1,424 @@
+.images-to-pdf-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.pdf-scanner-studio {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  min-height: 500px;
+  border: 1px solid var(--border-color);
+}
+
+.scanner-main {
+  flex: 1;
+  background: var(--bg-main, rgba(0, 0, 0, 0.2));
+  padding: 30px;
+  overflow: auto;
+}
+
+.page-setup-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 16px 30px;
+  background: var(--bg-card-hover, rgba(255, 255, 255, 0.04));
+  border-bottom: 1px solid var(--border-color);
+}
+
+.page-setup-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.page-setup-field label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.page-setup-field select {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.9rem;
+  min-width: 150px;
+  cursor: pointer;
+}
+
+.empty-scanner-state {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+
+.empty-scanner-state .upload-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.empty-scanner-state .upload-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.scanner-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.scanner-card {
+  width: 220px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: grab;
+}
+
+.scanner-card:active {
+  cursor: grabbing;
+}
+
+.scanner-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.scanner-card.dragging {
+  opacity: 0.5;
+}
+
+.scanner-card.dragging-placeholder {
+  opacity: 0.2;
+  border: 2px dashed #8b5cf6;
+}
+
+
+
+.file-size {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.pdf-card-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.pdf-icon-btn {
+  background: white;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s, box-shadow 0.2s;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.pdf-icon-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  color: #000;
+}
+
+.pdf-icon-btn.delete {
+  color: #ef4444;
+}
+
+.pdf-icon-btn.delete:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+}
+
+.card-image-wrapper {
+  height: 250px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.overlay-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 10;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 100%);
+}
+
+.file-size {
+  font-size: 0.8rem;
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.4);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.pdf-card-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.card-image-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.card-footer {
+  padding: 8px 10px;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.file-name {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+.add-more-card {
+  width: 180px;
+  height: 260px; /* roughly matches standard card height */
+  border: 2px dashed var(--border-color);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: 0.2s;
+}
+
+.add-more-card:hover {
+  background: rgba(255,255,255,0.02);
+  border-color: #8b5cf6;
+  color: #8b5cf6;
+}
+
+.add-more-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+/* Bottom Action Bar */
+.scanner-bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+  background: var(--bg-card-hover, rgba(255, 255, 255, 0.04));
+  border-top: 1px solid var(--border-color);
+  align-items: center;
+}
+
+.bottom-select-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.bottom-select-btn:hover:not(:disabled) {
+  background: rgba(255,255,255,0.05);
+}
+
+.bottom-select-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.bottom-convert-btn {
+  background: #0ea5e9; /* using a blue similar to 11zon screenshot for conversion */
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 1rem;
+}
+
+.bottom-convert-btn:hover:not(:disabled) {
+  background: #0284c7;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+}
+
+.bottom-convert-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+}
+
+/* Modal Styles - Shared from before but kept intact */
+.edit-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.edit-modal {
+  background: var(--bg-card);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  border: 1px solid var(--border-color);
+}
+
+.edit-modal-header {
+  padding: 20px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.edit-modal-header h3 {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.close-btn:hover {
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.edit-modal-body {
+  padding: 20px;
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-main, rgba(0, 0, 0, 0.2));
+  min-height: 300px;
+}
+
+.crop-container {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.edit-modal-footer {
+  padding: 20px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.cancel-btn {
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+.save-btn {
+  padding: 10px 20px;
+  background: var(--primary-gradient, linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%));
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+}

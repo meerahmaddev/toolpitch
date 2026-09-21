@@ -1,0 +1,18 @@
+diff --git a/node_modules/tesseract.js/src/createWorker.js b/node_modules/tesseract.js/src/createWorker.js
+index 89b53b8..1e1e34e 100644
+--- a/node_modules/tesseract.js/src/createWorker.js
++++ b/node_modules/tesseract.js/src/createWorker.js
+@@ -44,7 +44,13 @@ module.exports = async (langs = 'eng', oem = OEM.LSTM_ONLY, _options = {}, confi
+   const workerError = (event) => { workerResReject(event.message); };
+ 
+   let worker = spawnWorker(options);
++  // Node's worker_threads.Worker is an EventEmitter - assigning `.onerror`
++  // (the browser Worker API's pattern) does nothing here, so a worker that
++  // fails to start (e.g. a bad workerPath) had its 'error' event go
++  // unhandled, which Node re-throws as a process-crashing uncaughtException
++  // instead of rejecting this promise like a normal failure.
+   worker.onerror = workerError;
++  worker.on('error', workerError);
+ 
+   workerCounter += 1;
+ 

@@ -1,0 +1,243 @@
+.success-page-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-family, 'Inter', sans-serif);
+}
+
+.success-header-wrapper {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.success-page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary, #ffffff);
+  margin: 0;
+}
+
+.success-card {
+  width: 100%;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 3rem;
+}
+
+.audio-player-wrapper {
+  width: 100%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.audio-player-wrapper audio {
+  width: 100%;
+  height: 40px;
+  outline: none;
+}
+
+.audio-player-loading,
+.audio-player-error {
+  margin: 0;
+  padding: 8px 4px;
+  font-size: 0.9rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.audio-player-error {
+  color: #fca5a5;
+}
+
+.success-main-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.back-circle-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #4b5563; /* Dark gray */
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.back-circle-btn:hover {
+  background: #374151;
+  transform: scale(1.05);
+}
+
+.mega-download-btn {
+  height: 80px;
+  padding: 0 40px;
+  background: var(--color-3);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 8px 25px rgba(123, 49, 131, 0.4);
+}
+
+.mega-download-btn:hover {
+  background: #5e2463;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(123, 49, 131, 0.5);
+}
+
+.integration-icons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.int-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.int-btn:hover {
+  transform: scale(1.1);
+}
+
+.int-btn.gdrive { background: var(--color-3); }
+.int-btn.dbox { background: var(--color-3); }
+.int-btn.copy-link { background: var(--color-3); }
+.int-btn.delete-btn { background: var(--color-3); }
+
+.success-bottom-actions {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.continue-box {
+  background: white;
+  border-radius: 8px;
+  padding: 20px 30px;
+  color: #1e293b;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.continue-box p {
+  margin: 0 0 15px 0;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.continue-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #1e293b;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.continue-link:hover {
+  background: #f1f5f9;
+}
+
+.continue-icon-wrap {
+  width: 40px;
+  height: 40px;
+  background: rgba(123, 49, 131, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+
+.continue-link span:not(.arrow-right) {
+  flex: 1;
+}
+
+.arrow-right {
+  font-size: 1.5rem;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  margin-top: -2px; /* Slight visual adjustment for the chevron character */
+}
+
+.privacy-box {
+  background: #e0f2fe; /* Light blue */
+  border-radius: 8px;
+  padding: 25px 30px;
+  color: #0f172a;
+}
+
+.privacy-box h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+  color: #334155;
+}
+
+.privacy-box p {
+  margin: 0 0 20px 0;
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.privacy-box a {
+  color: #334155;
+  font-weight: 600;
+}
+
+.security-badges {
+  display: flex;
+  gap: 20px;
+}
+
+.badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

@@ -1,0 +1,104 @@
+.background-container {
+  position: fixed;
+  top: -50px;
+  left: -50px;
+  right: -50px;
+  bottom: -50px;
+  z-index: 1;
+  pointer-events: none;
+  transform: translate(var(--mouseX, 0), var(--mouseY, 0));
+  transition: transform 0.1s ease-out, opacity 0.6s ease;
+  opacity: 1;
+}
+
+/* Fade out cards when user scrolls past the hero section */
+.hero-scrolled-past .background-container {
+  opacity: 0;
+}
+
+.pitch-bg-card {
+  position: absolute;
+  width: 280px;
+  height: 180px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  transform: scale(var(--scale, 1));
+  animation: float var(--duration, 15s) ease-in-out infinite alternate;
+}
+
+.pitch-bg-card:nth-child(even) {
+  animation: floatReverse var(--duration, 15s) ease-in-out infinite alternate;
+}
+
+@keyframes float {
+  0%   { transform: translateY(0px)   rotate(0deg)  scale(var(--scale, 1)); }
+  100% { transform: translateY(-50px) rotate(3deg)  scale(var(--scale, 1)); }
+}
+
+@keyframes floatReverse {
+  0%   { transform: translateY(0px)  rotate(0deg)   scale(var(--scale, 1)); }
+  100% { transform: translateY(50px) rotate(-3deg)  scale(var(--scale, 1)); }
+}
+
+.pitch-bg-card h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  font-family: var(--font-family);
+}
+
+/* Gradient Orbs for nebula background depth */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: -1;
+  opacity: 0.7;
+  mix-blend-mode: screen;
+}
+
+.orb-1 {
+  width: 600px;
+  height: 600px;
+  background: var(--color-3);
+  top: -10%;
+  left: 5%;
+  animation: floatDown 20s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+  width: 700px;
+  height: 700px;
+  background: var(--color-2);
+  bottom: -30%;
+  right: -10%;
+  animation: floatUp 25s ease-in-out infinite alternate;
+}
+
+.orb-3 {
+  width: 400px;
+  height: 400px;
+  background: var(--color-4);
+  top: 40%;
+  left: 40%;
+  animation: floatUp 15s ease-in-out infinite alternate;
+  opacity: 0.4;
+}
+
+/* Mobile & iPhone Responsiveness: Hide background floating cards on smaller screens to keep hero clean and legible */
+@media (max-width: 900px) {
+  .pitch-bg-card {
+    display: none !important;
+  }
+}
+

@@ -1,0 +1,122 @@
+.compress-pdf-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: var(--bg-card);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+}
+
+.compression-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.level-options {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.level-card {
+  flex: 1;
+  min-width: 200px;
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.level-card:hover {
+  border-color: #60a5fa;
+  transform: translateY(-2px);
+}
+
+.level-card.active {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.level-card.active::before {
+  content: '✓';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #3b82f6;
+  font-weight: bold;
+}
+
+.level-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.level-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.compression-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  /* Was a solid light-green/white card (#f0fdf4) - looked like a mismatched light-mode
+     popup dropped into this app's all-dark theme (no light mode exists - see --bg-card/
+     --text-primary in globals.css). A tinted overlay on the existing dark surface keeps the
+     "success" green as an accent instead of a full light background, matching how green is
+     used elsewhere in the app (e.g. AccountSettings.css's password-strength indicator). */
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 1rem;
+  color: var(--text-primary);
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.stat-value.strike {
+  text-decoration: line-through;
+  color: #f87171;
+  opacity: 0.7;
+}
+
+.savings-badge {
+  background: #22c55e;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}

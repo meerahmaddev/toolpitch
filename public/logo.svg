@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-label="Convertify">
+  <defs>
+    <linearGradient id="layerTop" x1="4" y1="0" x2="36" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#c576b6" />
+      <stop offset="100%" stop-color="#f6dae9" />
+    </linearGradient>
+    <linearGradient id="layerMid" x1="4" y1="0" x2="36" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7b3183" />
+      <stop offset="100%" stop-color="#c576b6" />
+    </linearGradient>
+    <linearGradient id="layerBottom" x1="4" y1="0" x2="36" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3f1451" />
+      <stop offset="100%" stop-color="#7b3183" />
+    </linearGradient>
+    <filter id="layerShadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="1.2" flood-color="#1a0b2e" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <g filter="url(#layerShadow)">
+    <polygon points="4,27 20,21 36,27 20,33" fill="url(#layerBottom)" />
+    <polygon points="4,19 20,13 36,19 20,25" fill="url(#layerMid)" />
+    <polygon points="4,11 20,5 36,11 20,17" fill="url(#layerTop)" />
+  </g>
+</svg>

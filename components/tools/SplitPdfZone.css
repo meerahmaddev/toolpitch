@@ -1,0 +1,236 @@
+.split-pdf-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: var(--bg-card);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+}
+
+.split-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.split-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.split-mode-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.custom-number-input {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.num-btn {
+  background: #f3f4f6;
+  border: none;
+  color: #333;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1;
+  transition: background 0.2s;
+}
+
+.num-btn:hover {
+  background: #e5e7eb;
+}
+
+.split-number-input {
+  width: 40px;
+  background: white;
+  border: none;
+  border-left: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+  color: #111;
+  padding: 6px 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  appearance: textfield; /* Firefox */
+}
+
+/* Chrome, Safari, Edge, Opera */
+.split-number-input::-webkit-outer-spin-button,
+.split-number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.split-number-input:focus {
+  outline: none;
+  background: #f9fafb;
+}
+
+.split-pages-viewer {
+  display: flex;
+  overflow-x: auto;
+  padding: 20px;
+  gap: 0;
+  min-height: 350px;
+  background: #f8f9fa; /* Light background similar to screenshot */
+  border-radius: 8px;
+  align-items: center;
+}
+
+.split-page-wrapper {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.split-page-card {
+  width: 180px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.split-page-image-container {
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background: white;
+}
+
+.split-page-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border: 1px solid #e5e7eb;
+}
+
+.split-page-footer {
+  padding: 8px;
+  text-align: center;
+  background: #fdf2f8; /* pinkish background for page number */
+  color: #831843;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-top: 1px solid #fce7f3;
+}
+
+.split-divider {
+  width: 40px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.split-divider-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background-image: linear-gradient(#93c5fd 50%, transparent 50%);
+  background-size: 2px 14px;
+  background-repeat: repeat-y;
+  z-index: 1;
+  transition: all 0.2s;
+}
+
+.split-divider.active .split-divider-line {
+  background-image: none;
+  background-color: #2563eb;
+  width: 3px;
+}
+
+.split-scissors-icon {
+  z-index: 2;
+  background: #eff6ff;
+  color: #60a5fa;
+  border-radius: 50%;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  box-shadow: 0 0 0 2px #bfdbfe;
+}
+
+.split-divider:hover .split-scissors-icon {
+  background: #dbeafe;
+  color: #3b82f6;
+  transform: scale(1.1);
+}
+
+.split-divider.active .split-scissors-icon {
+  background: #2563eb;
+  color: white;
+  box-shadow: 0 0 0 3px white, 0 0 0 4px #2563eb;
+  transform: scale(1.2);
+}
+
+.pdf-info-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.pdf-info-header h3 {
+  margin: 0 0 5px 0;
+  color: var(--text-primary);
+}
+
+.pdf-info-header p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.choose-diff-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  color: #111;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.choose-diff-btn:hover {
+  background: #f3f4f6;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}

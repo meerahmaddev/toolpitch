@@ -1,0 +1,45 @@
+.compressor-preview-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.compressor-preview-image {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.compressor-heic-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+}
+
+.compressor-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.compressor-field label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.compressor-range {
+  width: 100%;
+  accent-color: #8b5cf6;
+}
+
+.compressor-hint {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0;
+}

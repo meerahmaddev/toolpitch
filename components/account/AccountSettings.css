@@ -1,0 +1,145 @@
+.account-settings-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem;
+  width: 100%;
+}
+
+.account-settings-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.account-settings-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.account-settings-header p {
+  color: var(--text-secondary);
+}
+
+.account-settings-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.account-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.account-card .floating-input {
+  margin-bottom: 16px;
+}
+
+.account-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-1);
+  margin-bottom: 1.25rem;
+}
+
+.account-field-note {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 8px 0 16px;
+}
+
+
+.password-strength {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: -6px 0 16px;
+}
+
+.password-strength-bar {
+  flex: 1;
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.password-strength-fill {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.2s ease, background-color 0.2s ease;
+}
+
+.password-strength-fill.strength-weak {
+  width: 33%;
+  background: #ef4444;
+}
+.password-strength-fill.strength-medium {
+  width: 66%;
+  background: #f59e0b;
+}
+.password-strength-fill.strength-strong {
+  width: 100%;
+  background: #22c55e;
+}
+
+.password-strength-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  min-width: 52px;
+  text-align: right;
+}
+
+.password-strength-label.strength-weak {
+  color: #ef4444;
+}
+.password-strength-label.strength-medium {
+  color: #b45309;
+}
+.password-strength-label.strength-strong {
+  color: #16a34a;
+}
+
+.password-match-hint {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin: -8px 0 16px;
+}
+
+.password-match-hint.match {
+  color: #16a34a;
+}
+
+.password-match-hint.no-match {
+  color: #ef4444;
+}
+
+.delete-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.account-danger-zone {
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.account-danger-zone .account-card-title {
+  color: #ef4444;
+}
+
+.account-delete-btn {
+  height: 44px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .account-settings-page {
+    padding: 2.5rem 1.25rem 4rem;
+  }
+}

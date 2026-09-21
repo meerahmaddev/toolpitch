@@ -1,0 +1,284 @@
+.stt-zone-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.stt-detected-language {
+  display: inline-block;
+  align-self: flex-start;
+  margin-bottom: 10px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.78rem;
+}
+
+.stt-detected-language strong {
+  color: #c4b5fd;
+}
+
+.stt-input-actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 30px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Shared box model for all three controls (record / upload / language) so
+   they line up at identical height, padding, and radius regardless of being
+   a <button>, a <label>, or a <select>. All class names in this file are
+   "stt-" prefixed on purpose - plain CSS imports in this app are global, not
+   component-scoped, so a generic name like .upload-btn or .spinner here can
+   silently collide with an identically-named (but differently-styled) class
+   in another tool's CSS file, and whichever stylesheet happens to load later
+   wins for every instance of that class in the whole app. */
+.stt-record-btn,
+.stt-upload-btn,
+.stt-language-select {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 48px;
+  box-sizing: border-box;
+  padding: 0 22px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.stt-record-btn:hover:not(:disabled),
+.stt-upload-btn:hover:not(.stt-disabled),
+.stt-language-select:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.stt-record-btn:active:not(:disabled),
+.stt-upload-btn:active:not(.stt-disabled),
+.stt-language-select:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.stt-record-btn {
+  background-color: #ef4444; /* Red */
+  color: white;
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+}
+
+.stt-record-btn:hover:not(:disabled) {
+  background-color: #dc2626;
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+}
+
+.stt-record-btn.stt-recording {
+  animation: stt-pulse 1.5s infinite;
+  background-color: #b91c1c;
+}
+
+.stt-record-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@keyframes stt-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(239, 68, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+.stt-language-select {
+  background-color: rgba(139, 92, 246, 0.16);
+  border-color: rgba(139, 92, 246, 0.45);
+  color: white;
+  box-shadow: 0 4px 10px rgba(139, 92, 246, 0.15);
+  /* Replace the native (misaligned, browser-default) dropdown arrow with a
+     custom one we can actually position. */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M1 1L5 5L9 1' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+.stt-language-select:hover:not(:disabled) {
+  background-color: rgba(139, 92, 246, 0.26);
+  border-color: rgba(139, 92, 246, 0.75);
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.25);
+}
+
+.stt-language-select:focus-visible {
+  outline: none;
+  border-color: #c4b5fd;
+}
+
+.stt-language-select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.stt-language-select option {
+  background-color: #2a1a3e;
+  color: white;
+}
+
+.stt-upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  border-radius: 10px;
+}
+
+.stt-upload-btn-wrapper input[type=file] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.stt-upload-btn {
+  background-color: #3b82f6; /* Blue */
+  color: white;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+}
+
+.stt-upload-btn:hover:not(.stt-disabled) {
+  background-color: #2563eb;
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.stt-upload-btn.stt-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.stt-text-area-wrapper {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.stt-textarea {
+  width: 100%;
+  height: 300px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  resize: vertical;
+  transition: border-color 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+
+.stt-textarea:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.stt-textarea:disabled {
+  opacity: 0.7;
+}
+
+.stt-processing-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1.2rem;
+  z-index: 10;
+}
+
+.stt-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: stt-spin 1s ease-in-out infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes stt-spin {
+  to { transform: rotate(360deg); }
+}
+
+.stt-download-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.stt-download-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  color: white;
+}
+
+.stt-download-btn--txt {
+  background-color: #4b5563; /* Gray */
+}
+.stt-download-btn--txt:hover {
+  background-color: #374151;
+}
+
+.stt-download-btn--docx {
+  background-color: #10b981; /* Emerald */
+}
+.stt-download-btn--docx:hover {
+  background-color: #059669;
+}
+
+.stt-fade-in {
+  animation: stt-fadeIn 0.5s ease-in;
+}
+
+@keyframes stt-fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
