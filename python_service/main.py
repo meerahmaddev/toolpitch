@@ -57,6 +57,9 @@ if not shutil.which(GHOSTSCRIPT_BIN):
 # _uno_conversion_lock) for however long that takes, or until it times out.
 MAX_OFFICE_UPLOAD_BYTES = 20 * 1024 * 1024
 MAX_PDF_UPLOAD_BYTES = 10 * 1024 * 1024
+# Matches the 5MB audio cap in lib/converter/validation.ts, for the same reason as the
+# two limits above.
+MAX_AUDIO_UPLOAD_BYTES = 5 * 1024 * 1024
 
 # Must stay comfortably under both the Next.js->service request timeout (55s,
 # CONVERSION_TIMEOUT_MS in lib/pythonService.ts) and Vercel's hard 60s function ceiling
@@ -2252,6 +2255,7 @@ def _convert_pdf_to_ppt_sync(file_obj, temp_pdf_path: str, temp_pptx_path: str) 
     with open(temp_pdf_path, "wb") as buffer:
         shutil.copyfileobj(file_obj, buffer)
 
+    enforce_max_upload_size(temp_pdf_path, MAX_PDF_UPLOAD_BYTES, "PDF")
     doc = open_pdf_or_raise(temp_pdf_path)
     prs = Presentation()
     blank_slide_layout = prs.slide_layouts[6] # blank layout
@@ -2483,7 +2487,8 @@ def _convert_pdf_to_images_sync(file_obj, temp_pdf_path: str, temp_zip_path: str
     with open(temp_pdf_path, "wb") as buffer:
         shutil.copyfileobj(file_obj, buffer)
 
-    doc = fitz.open(temp_pdf_path)
+    enforce_max_upload_size(temp_pdf_path, MAX_PDF_UPLOAD_BYTES, "PDF")
+    doc = open_pdf_or_raise(temp_pdf_path)
 
     with zipfile.ZipFile(temp_zip_path, 'w') as zipf:
         for i, page in enumerate(doc):
@@ -2505,6 +2510,9 @@ async def convert_pdf_to_images(background_tasks: BackgroundTasks, file: UploadF
 
         background_tasks.add_task(remove_files, [temp_pdf_path, temp_zip_path])
         return FileResponse(path=temp_zip_path, filename=f"converted_images.zip", media_type="application/zip")
+    except InvalidFileError as e:
+        remove_files([temp_pdf_path, temp_zip_path])
+        raise HTTPException(status_code=422, detail=str(e))
     except Exception as e:
         remove_files([temp_pdf_path, temp_zip_path])
         raise HTTPException(status_code=500, detail=str(e))
@@ -2556,6 +2564,8 @@ async def convert_speech_to_text(file: UploadFile = File(...), language: str = F
     try:
         with open(temp_audio_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
+
+        enforce_max_upload_size(temp_audio_path, MAX_AUDIO_UPLOAD_BYTES, "audio")
 
         # Auto-detection on the small "base" model can misfire for lower-resource
         # languages (e.g. Urdu getting misdetected as Chinese) - when the caller
@@ -2727,7 +2737,8 @@ def _pdf_thumbnail_sync(file_obj, temp_pdf_path: str, temp_png_path: str) -> Non
     with open(temp_pdf_path, "wb") as buffer:
         shutil.copyfileobj(file_obj, buffer)
 
-    doc = fitz.open(temp_pdf_path)
+    enforce_max_upload_size(temp_pdf_path, MAX_PDF_UPLOAD_BYTES, "PDF")
+    doc = open_pdf_or_raise(temp_pdf_path)
     if len(doc) == 0:
         raise RuntimeError("PDF has no pages")
     doc[0].get_pixmap(dpi=72).save(temp_png_path)
@@ -2745,12 +2756,15 @@ async def convert_pdf_thumbnail(background_tasks: BackgroundTasks, file: UploadF
 
         background_tasks.add_task(remove_files, [temp_pdf_path, temp_png_path])
         return FileResponse(path=temp_png_path, media_type="image/png")
+    except InvalidFileError as e:
+        remove_files([temp_pdf_path, temp_png_path])
+        raise HTTPException(status_code=422, detail=str(e))
     except Exception as e:
         remove_files([temp_pdf_path, temp_png_path])
         raise HTTPException(status_code=500, detail=str(e))
 
 
-def _office_thumbnail_sync(file_obj, input_path: str, work_dir: str) -> str:
+def _office_thumbnail_sync(file_obj, input_path: str, ext: str, work_dir: str) -> str:
     """All the blocking work for office-thumbnail: writing the upload to disk, converting it
     to PDF via LibreOffice, then rendering page 1. Must be called via run_in_threadpool -
     LibreOffice alone can take up to its 100s subprocess timeout, and calling it directly on
@@ -2758,6 +2772,12 @@ def _office_thumbnail_sync(file_obj, input_path: str, work_dir: str) -> str:
     entire duration."""
     with open(input_path, "wb") as buffer:
         shutil.copyfileobj(file_obj, buffer)
+
+    # Same cap office_to_pdf_response enforces before handing a file to LibreOffice - see
+    # MAX_OFFICE_UPLOAD_BYTES above for why this matters even for a "cheap" thumbnail: the
+    # LibreOffice conversion this runs first is exactly as expensive as a full office-to-pdf
+    # conversion, and shares the same single listener (_uno_conversion_lock).
+    enforce_max_upload_size(input_path, MAX_OFFICE_UPLOAD_BYTES, _KIND_BY_EXT.get(ext.lower(), "document"))
 
     pdf_path = convert_with_soffice(input_path, work_dir)
     doc = fitz.open(pdf_path)
@@ -2775,10 +2795,13 @@ async def convert_office_thumbnail(background_tasks: BackgroundTasks, file: Uplo
     input_path = os.path.join(work_dir, f"input{ext}")
 
     try:
-        png_path = await run_in_threadpool(_office_thumbnail_sync, file.file, input_path, work_dir)
+        png_path = await run_in_threadpool(_office_thumbnail_sync, file.file, input_path, ext, work_dir)
 
         background_tasks.add_task(shutil.rmtree, work_dir, True)
         return FileResponse(path=png_path, media_type="image/png")
+    except InvalidFileError as e:
+        shutil.rmtree(work_dir, ignore_errors=True)
+        raise HTTPException(status_code=422, detail=str(e))
     except Exception as e:
         shutil.rmtree(work_dir, ignore_errors=True)
         raise HTTPException(status_code=500, detail=str(e))
