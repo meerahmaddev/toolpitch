@@ -7,7 +7,7 @@ export const runtime = 'nodejs';
 export const maxDuration = 60;
 
 export async function POST(request: Request) {
-  const limited = await rateLimitOrThrow(request, { keyPrefix: 'fetch-drive', limit: 30, windowSeconds: 60 });
+  const limited = await rateLimitOrThrow(request, { keyPrefix: 'fetch-drive', limit: 2, windowSeconds: 60 });
   if (limited) return limited;
 
   try {

@@ -99,7 +99,7 @@ export async function rateLimitOrThrow(
  * endpoint. Upload/preview/download routes stay on their own separate, looser
  * limits since they aren't the expensive conversion step itself.
  */
-const CONVERSION_LIMIT = 3;
+const CONVERSION_LIMIT = 2;
 const CONVERSION_WINDOW_SECONDS = 60;
 
 export async function enforceConversionLimit(request: Request, identifier?: string): Promise<NextResponse | null> {

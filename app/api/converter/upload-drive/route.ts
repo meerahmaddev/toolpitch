@@ -10,7 +10,7 @@ export const runtime = 'nodejs';
 export const maxDuration = 60;
 
 export async function POST(request: Request) {
-  const limited = await rateLimitOrThrow(request, { keyPrefix: 'upload-drive', limit: 20, windowSeconds: 60 });
+  const limited = await rateLimitOrThrow(request, { keyPrefix: 'upload-drive', limit: 2, windowSeconds: 60 });
   if (limited) return limited;
 
   const body = await request.json();
