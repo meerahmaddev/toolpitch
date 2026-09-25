@@ -14,20 +14,21 @@
 .tool-page-header h1 {
   font-size: 2.5rem;
   font-weight: 800;
-  color: var(--color-text);
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 
 .tool-page-header p {
   font-size: 1.1rem;
-  color: var(--color-text-light);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .tool-drop-zone-wrapper {
-  background: var(--color-bg);
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
   padding: 10px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
   margin-bottom: 3rem;
   width: 100%;
   box-sizing: border-box;
@@ -39,13 +40,14 @@
   padding: 0;
   background: transparent;
   box-shadow: none;
+  border: none;
 }
 
 .tool-drop-zone {
-  border: 2px dashed rgba(123, 49, 131, 0.3);
-  border-radius: 10px;
+  border: 2px dashed var(--color-4, #c576b6);
+  border-radius: 12px;
   padding: 5rem 2rem;
-  background: rgba(255, 255, 255, 0.5);
+  background: #ffffff;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
@@ -61,7 +63,7 @@
   padding: 1.5rem 1rem;
   min-height: auto;
   border-style: solid;
-  border-color: rgba(123, 49, 131, 0.15);
+  border-color: rgba(123, 49, 131, 0.2);
 }
 
 .tool-drop-zone.active-drag {
@@ -90,7 +92,7 @@
 .zone-icon {
   color: var(--color-3);
   margin-bottom: 1.5rem;
-  opacity: 0.8;
+  opacity: 1;
   transition: all 0.3s ease;
 }
 
@@ -102,12 +104,12 @@
 .zone-title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--color-text);
+  color: #1a0b2e;
   margin-bottom: 0.5rem;
 }
 
 .zone-subtitle {
-  color: var(--color-text-light);
+  color: #64748b;
   font-size: 1rem;
   margin-bottom: 2rem;
 }
@@ -228,7 +230,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--color-text-light);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 0.9rem;
   font-weight: 500;
 }
@@ -244,7 +246,7 @@
 
 .url-input-container h3 {
   margin-bottom: 1.5rem;
-  color: var(--color-text);
+  color: #ffffff;
 }
 
 .url-input-wrapper {
@@ -299,14 +301,14 @@
 .cancel-url-btn {
   background: transparent;
   border: none;
-  color: var(--color-text-light);
+  color: rgba(255, 255, 255, 0.7);
   font-weight: 500;
   cursor: pointer;
   padding: 8px 16px;
 }
 
 .cancel-url-btn:hover {
-  color: var(--color-text);
+  color: #ffffff;
   text-decoration: underline;
 }
 

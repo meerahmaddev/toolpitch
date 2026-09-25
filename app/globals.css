@@ -41,13 +41,7 @@ body {
 }
 
 
-/* Google Drive Picker: Google positions the dialog relative to the document, so on a
-   scrolled page it can render off-screen behind its own backdrop. Pin it to the viewport. */
-.picker-dialog-bg {
-  position: fixed !important;
-  inset: 0 !important;
-  z-index: 2147483646 !important;
-}
+
 
 .picker-dialog {
   position: fixed !important;
@@ -57,12 +51,12 @@ body {
   max-width: calc(100vw - 32px);
   max-height: calc(100vh - 32px);
   z-index: 2147483647 !important;
+}
 
 /* Global select option styling for OS native dropdowns */
 select option {
   background-color: #1a0b2e;
   color: #ffffff;
-
 }
 
 /* Animations */
@@ -126,11 +120,13 @@ a {
 }
 
 .btn-start-converting {
-  background: var(--btn-primary-bg);
-  color: var(--btn-primary-text);
-  padding: 0.9rem 2rem;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  color: #ffffff !important;
+  padding: 0.9rem 2.2rem;
   font-size: 1rem;
+  font-weight: 700;
   border-radius: 999px;
+  box-shadow: 0 10px 25px rgba(168, 85, 247, 0.4);
 }
 
 /* --- Shared Tool Bottom Bar & Action Buttons --- */
