@@ -139,6 +139,23 @@ const AuthModal = () => {
         {/* Sign Up Form */}
         <div className="form-container sign-up-container">
           <div className="auth-form-wrapper">
+            <div className="auth-mobile-tabs mobile-only">
+              <button
+                type="button"
+                className={`auth-mobile-tab ${!isSignUp ? 'active' : ''}`}
+                onClick={() => handlePanelSwitch(false)}
+              >
+                Log In
+              </button>
+              <button
+                type="button"
+                className={`auth-mobile-tab ${isSignUp ? 'active' : ''}`}
+                onClick={() => handlePanelSwitch(true)}
+              >
+                Sign Up
+              </button>
+            </div>
+
             <h1 className="auth-title">Create Account</h1>
             <p className="auth-subtitle">Join Convertify and transform your files.</p>
 
@@ -213,7 +230,7 @@ const AuthModal = () => {
               )}
             </Form>
 
-            <p className="auth-switch mobile-only">
+            <p className="auth-switch">
               Already have an account? <span onClick={() => handlePanelSwitch(false)}>Log In</span>
             </p>
           </div>
@@ -222,6 +239,23 @@ const AuthModal = () => {
         {/* Sign In Form */}
         <div className="form-container sign-in-container">
           <div className="auth-form-wrapper">
+            <div className="auth-mobile-tabs mobile-only">
+              <button
+                type="button"
+                className={`auth-mobile-tab ${!isSignUp ? 'active' : ''}`}
+                onClick={() => handlePanelSwitch(false)}
+              >
+                Log In
+              </button>
+              <button
+                type="button"
+                className={`auth-mobile-tab ${isSignUp ? 'active' : ''}`}
+                onClick={() => handlePanelSwitch(true)}
+              >
+                Sign Up
+              </button>
+            </div>
+
             <h1 className="auth-title">Welcome Back</h1>
             <p className="auth-subtitle">Please enter your credentials.</p>
 
@@ -274,7 +308,7 @@ const AuthModal = () => {
               )}
             </Form>
 
-            <p className="auth-switch desktop-switch">
+            <p className="auth-switch">
               Don&apos;t have an account? <span onClick={() => handlePanelSwitch(true)}>Sign Up</span>
             </p>
           </div>

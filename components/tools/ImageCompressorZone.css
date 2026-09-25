@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .compressor-preview-image {
@@ -19,6 +21,32 @@
   align-items: center;
   justify-content: center;
   color: var(--text-secondary);
+}
+
+.compressor-file-info {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.compressor-file-name {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.compressor-file-size {
+  margin: 4px 0 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .compressor-field {
@@ -42,4 +70,19 @@
   font-size: 0.8rem;
   color: var(--text-secondary);
   margin: 0;
+}
+
+@media (max-width: 640px) {
+  .compressor-preview-image {
+    width: 56px;
+    height: 56px;
+  }
+
+  .compressor-file-name {
+    font-size: 0.88rem;
+  }
+
+  .compressor-file-size {
+    font-size: 0.8rem;
+  }
 }

@@ -54,8 +54,17 @@ export async function POST(request: Request) {
       continue;
     }
     try {
-      const signedUrl = generateSignedUrl(file.cloudinaryPublicId, file.resourceType);
-      const response = await axios({ method: 'GET', url: signedUrl, responseType: 'arraybuffer', timeout: 20000 });
+      let fileBuffer: Buffer;
+      if (file.cloudinaryPublicId.startsWith('local:')) {
+        const fs = await import('fs');
+        const path = await import('path');
+        const localFilePath = path.join(process.cwd(), 'public', 'uploads', file.filename);
+        fileBuffer = await fs.promises.readFile(localFilePath);
+      } else {
+        const signedUrl = generateSignedUrl(file.cloudinaryPublicId, file.resourceType);
+        const response = await axios({ method: 'GET', url: signedUrl, responseType: 'arraybuffer', timeout: 20000 });
+        fileBuffer = Buffer.from(response.data);
+      }
 
       let name = file.originalName;
       if (usedNames.has(name)) {
@@ -66,7 +75,7 @@ export async function POST(request: Request) {
       }
       usedNames.add(name);
 
-      fetched.push({ name, buffer: Buffer.from(response.data) });
+      fetched.push({ name, buffer: fileBuffer });
     } catch (error) {
       failed.push({ name: file.originalName, reason: error instanceof Error ? error.message : 'Failed to fetch file.' });
     }

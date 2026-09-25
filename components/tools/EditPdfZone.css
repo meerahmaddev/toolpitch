@@ -196,10 +196,36 @@
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
   border-radius: 4px;
   overflow: hidden;
+  /* Allow the wrapper to shrink on narrow screens */
+  max-width: 100%;
+}
+
+/* Scrollable wrapper so the canvas never causes horizontal page overflow on mobile */
+.edit-pdf-scroll-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(123, 49, 131, 0.4) transparent;
+}
+
+.edit-pdf-scroll-wrapper::-webkit-scrollbar {
+  height: 4px;
+}
+
+.edit-pdf-scroll-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.edit-pdf-scroll-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(123, 49, 131, 0.4);
+  border-radius: 2px;
 }
 
 .edit-pdf-page-canvas {
   display: block;
+  /* On desktop: fixed canvas size from JS; on mobile: shrink to fit */
   width: 100%;
   height: auto;
 }
@@ -345,4 +371,21 @@
 .edit-pdf-block-delete-btn:hover {
   background: #ef4444;
   color: #fff;
+}
+
+@media (max-width: 640px) {
+  .edit-pdf-toolbar {
+    gap: 8px;
+    padding: 8px 10px;
+    position: static;
+  }
+
+  .edit-pdf-toolbar-group {
+    flex-wrap: wrap;
+  }
+
+  .edit-pdf-save-btn {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
 }

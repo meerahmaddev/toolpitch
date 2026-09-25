@@ -186,3 +186,16 @@
   50% { transform: scale(1.1); opacity: 1; }
   100% { transform: scale(1); }
 }
+
+@media (max-width: 600px) {
+  .upload-modal {
+    padding: 1.5rem 1rem;
+    width: 94vw;
+    border-radius: 16px;
+  }
+
+  .drop-zone {
+    padding: 1.5rem 0.75rem;
+    min-height: 200px;
+  }
+}

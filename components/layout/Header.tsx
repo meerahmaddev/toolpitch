@@ -71,6 +71,7 @@ const voiceItems = [
 // Editor Items
 const editorItems = [
   { name: 'Edit PDF', slug: 'edit-pdf', type: 'Edit', color: '#8b5cf6', desc: 'Edit text, replace fonts & reflow content' },
+  { name: 'Compress PDF', slug: 'compress-pdf', type: 'Compress', color: '#ef4444', desc: 'Reduce PDF file size efficiently' },
   { name: 'Image Compressor', slug: 'image-compressor', type: 'Compress', color: '#ef4444', desc: 'Smart image optimization' },
 ];
 
@@ -126,6 +127,7 @@ const mobileColumns = [
     categorySlug: 'editor-tools',
     items: [
       { name: 'Edit PDF', slug: 'edit-pdf', type: 'Edit', color: '#8b5cf6' },
+      { name: 'Compress PDF', slug: 'compress-pdf', type: 'Compress', color: '#ef4444' },
       { name: 'Image Compressor', slug: 'image-compressor', type: 'Compress', color: '#ef4444' },
     ],
   },

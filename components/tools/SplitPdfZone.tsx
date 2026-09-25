@@ -192,16 +192,12 @@ const SplitPdfZone = () => {
             <p style={{ margin: 0, color: 'var(--text-secondary)' }}>Your split PDFs are ready to download as a ZIP.</p>
           </div>
 
-          <div className="scanner-bottom-bar" style={{ marginTop: '20px' }}>
+          <div className="scanner-bottom-bar">
             <button className="bottom-select-btn" onClick={resetAll}>
               <UploadCloud size={18} /> Split Another
             </button>
-            <button
-              className="primary-btn"
-              onClick={handleDownload}
-              style={{ padding: '12px 30px', fontSize: '1.1rem', background: '#16a34a', border: 'none', borderRadius: '30px', fontWeight: 'bold', display: 'flex', alignItems: 'center' }}
-            >
-              <DownloadCloud size={20} style={{ marginRight: '8px' }} /> Download ZIP
+            <button className="bottom-download-btn" onClick={handleDownload}>
+              <DownloadCloud size={20} /> Download ZIP
             </button>
           </div>
         </div>
@@ -264,7 +260,7 @@ const SplitPdfZone = () => {
               </div>
             </div>
 
-            <button className="primary-btn" style={{ padding: '8px 24px', fontSize: '1rem', background: '#2563eb' }} onClick={handleSplitPdf} disabled={isProcessing || isLoading}>
+            <button className="split-action-btn" onClick={handleSplitPdf} disabled={isProcessing || isLoading}>
               {isProcessing ? 'Processing...' : `Split (${resultingPdfsCount} PDFs)`} <ArrowRight size={18} style={{ marginLeft: '8px' }} />
             </button>
           </div>

@@ -33,6 +33,14 @@
   box-sizing: border-box;
 }
 
+/* Edit PDF needs the scroll wrapper to overflow — don't clip its content */
+.tool-drop-zone-wrapper:has(.edit-pdf-container) {
+  overflow: visible;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
 .tool-drop-zone {
   border: 2px dashed rgba(123, 49, 131, 0.3);
   border-radius: 10px;
@@ -313,6 +321,12 @@
     padding: 1.5rem 0.85rem 3rem;
     width: 100%;
     overflow-x: hidden;
+  }
+
+  /* Edit PDF needs horizontal scroll for the canvas — override the container's
+     overflow-x: hidden only when the edit-pdf-container is present inside it */
+  .tool-page-container:has(.edit-pdf-container) {
+    overflow-x: clip;
   }
 
   .tool-page-header {

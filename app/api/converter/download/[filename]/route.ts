@@ -36,11 +36,30 @@ export async function GET(request: Request, { params }: { params: Promise<{ file
     return NextResponse.json({ message: 'This file has expired and is no longer available.' }, { status: 404 });
   }
   if (!fileRecord.cloudinaryPublicId) {
-    return NextResponse.json({ message: 'File is not available in cloud storage.' }, { status: 404 });
+    return NextResponse.json({ message: 'File is not available in storage.' }, { status: 404 });
+  }
+
+  const disposition = inline ? 'inline' : 'attachment';
+
+  if (fileRecord.cloudinaryPublicId.startsWith('local:')) {
+    const fs = await import('fs');
+    const path = await import('path');
+    const localFilePath = path.join(process.cwd(), 'public', 'uploads', fileRecord.filename);
+    if (!fs.existsSync(localFilePath)) {
+      return NextResponse.json({ message: 'File not found on local storage.' }, { status: 404 });
+    }
+    const fileStream = fs.createReadStream(localFilePath);
+    const webStream = Readable.toWeb(fileStream) as ReadableStream;
+    return new Response(webStream, {
+      headers: {
+        'Content-Type': fileRecord.mimetype || 'application/octet-stream',
+        'Content-Disposition': `${disposition}; filename="${fileRecord.originalName}"`,
+        'Content-Length': String(fileRecord.size),
+      },
+    });
   }
 
   const signedUrl = generateSignedUrl(fileRecord.cloudinaryPublicId, fileRecord.resourceType);
-  const disposition = inline ? 'inline' : 'attachment';
 
   try {
     const response = await axios({ method: 'GET', url: signedUrl, responseType: 'stream' });

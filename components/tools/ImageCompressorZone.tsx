@@ -184,9 +184,9 @@ const ImageCompressorZone = () => {
                 decoding="async"
               />
             )}
-            <div>
-              <h3 style={{ margin: 0, color: 'var(--text-primary)' }}>{file.name}</h3>
-              <p style={{ margin: 0, color: 'var(--text-secondary)' }}>Original Size: {formatSize(file.size)}</p>
+            <div className="compressor-file-info">
+              <h3 className="compressor-file-name">{file.name}</h3>
+              <p className="compressor-file-size">Original Size: {formatSize(file.size)}</p>
             </div>
           </div>
 
@@ -261,12 +261,8 @@ const ImageCompressorZone = () => {
               <button className="bottom-select-btn" onClick={reset}>
                 <Upload size={18} /> Compress Another
               </button>
-              <button
-                className="primary-btn"
-                onClick={handleDownload}
-                style={{ padding: '12px 30px', fontSize: '1.1rem', background: '#16a34a', border: 'none', borderRadius: '30px', fontWeight: 'bold', display: 'flex', alignItems: 'center' }}
-              >
-                <Download size={20} style={{ marginRight: '8px' }} /> Download Compressed Image
+              <button className="bottom-download-btn" onClick={handleDownload}>
+                <Download size={20} /> Download Compressed Image
               </button>
             </>
           )}

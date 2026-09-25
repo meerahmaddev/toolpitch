@@ -9,6 +9,7 @@ import { useRejectFlash } from '@/utils/useRejectFlash';
 import ProcessingOverlay from './ProcessingOverlay';
 import { useDownloadGuard } from '@/hooks/useDownloadGuard';
 import './CompressPdfZone.css';
+import './ImageCompressorZone.css'; // Shared file name row styles
 import './ImagesToPdfZone.css'; // Reuse scanner grid styles
 
 // Matches the 10MB PDF cap enforced server-side (assertFileSizeAllowed in
@@ -142,13 +143,13 @@ const CompressPdfZone = () => {
         <div className="compress-pdf-container fade-in">
           <div className="workspace-main" style={{ padding: '0', background: 'transparent' }}>
           <div className="compression-settings">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <div style={{ background: 'var(--color-1)', padding: '15px', borderRadius: '8px' }}>
+            <div className="compressor-preview-row">
+              <div style={{ background: 'var(--color-1)', padding: '15px', borderRadius: '8px', flexShrink: 0 }}>
                 <FileText size={32} color="white" />
               </div>
-              <div>
-                <h3 style={{ margin: 0, color: 'var(--text-primary)' }}>{file.name}</h3>
-                <p style={{ margin: 0, color: 'var(--text-secondary)' }}>Original Size: {fileSizeStr}</p>
+              <div className="compressor-file-info">
+                <h3 className="compressor-file-name">{file.name}</h3>
+                <p className="compressor-file-size">Original Size: {fileSizeStr}</p>
               </div>
             </div>
 
@@ -226,12 +227,8 @@ const CompressPdfZone = () => {
                 >
                   <UploadCloud size={18} /> Compress Another
                 </button>
-                <button
-                  className="primary-btn"
-                  onClick={handleDownload}
-                  style={{ padding: '12px 30px', fontSize: '1.1rem', background: '#16a34a', border: 'none', borderRadius: '30px', fontWeight: 'bold', display: 'flex', alignItems: 'center' }}
-                >
-                  <DownloadCloud size={20} style={{ marginRight: '8px' }} /> Download Compressed PDF
+                <button className="bottom-download-btn" onClick={handleDownload}>
+                  <DownloadCloud size={20} /> Download Compressed PDF
                 </button>
               </>
             )}

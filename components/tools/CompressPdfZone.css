@@ -82,9 +82,11 @@
   background: rgba(34, 197, 94, 0.08);
   border: 1px solid rgba(34, 197, 94, 0.25);
   border-radius: 12px;
-  padding: 2rem;
+  padding: 1.5rem;
   margin-top: 1rem;
   color: var(--text-primary);
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .stat-box {
@@ -92,6 +94,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  min-width: 0;
 }
 
 .stat-label {
@@ -101,9 +104,10 @@
 }
 
 .stat-value {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: var(--text-primary);
+  word-break: break-all;
 }
 
 .stat-value.strike {
@@ -117,6 +121,33 @@
   color: white;
   padding: 4px 12px;
   border-radius: 20px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: bold;
+  white-space: nowrap;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .compression-stats {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+    gap: 8px;
+  }
+
+  .stat-value {
+    font-size: 1.2rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+  }
+
+  .compress-pdf-container {
+    padding: 0.5rem;
+  }
+
+  .level-card {
+    min-width: 100%;
+  }
 }

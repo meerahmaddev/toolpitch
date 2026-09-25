@@ -57,9 +57,17 @@ export async function GET(request: Request, { params }: { params: Promise<{ file
   }
 
   try {
-    const signedUrl = generateSignedUrl(fileRecord.cloudinaryPublicId, fileRecord.resourceType);
-    const response = await axios({ method: 'GET', url: signedUrl, responseType: 'arraybuffer' });
-    const fileBuffer = Buffer.from(response.data);
+    let fileBuffer: Buffer;
+    if (fileRecord.cloudinaryPublicId.startsWith('local:')) {
+      const fs = await import('fs');
+      const path = await import('path');
+      const localFilePath = path.join(process.cwd(), 'public', 'uploads', fileRecord.filename);
+      fileBuffer = await fs.promises.readFile(localFilePath);
+    } else {
+      const signedUrl = generateSignedUrl(fileRecord.cloudinaryPublicId, fileRecord.resourceType);
+      const response = await axios({ method: 'GET', url: signedUrl, responseType: 'arraybuffer' });
+      fileBuffer = Buffer.from(response.data);
+    }
 
     const thumbnailBuffer = isPdf
       ? await generatePdfThumbnail(fileBuffer)

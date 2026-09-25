@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Upload, Trash2, Crop as CropIcon, RotateCw, FileText, Plus, X, UploadCloud } from 'lucide-react';
+import { Upload, Trash2, Crop as CropIcon, RotateCw, FileText, Plus, X, UploadCloud, CheckCircle2, DownloadCloud } from 'lucide-react';
 import ReactCrop, { type Crop, type PixelCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import { message } from '@/utils/message';
@@ -46,6 +46,7 @@ const ImagesToPdfZone = () => {
   const [completedCrop, setCompletedCrop] = useState<PixelCrop | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const [result, setResult] = useState<{ url: string; fileName: string; imageCount: number } | null>(null);
   const imgRef = useRef<HTMLImageElement>(null);
 
   const itemsRef = useRef(items);
@@ -59,8 +60,9 @@ const ImagesToPdfZone = () => {
       itemsRef.current.forEach((item) => {
         if (item.previewUrl) URL.revokeObjectURL(item.previewUrl);
       });
+      if (result?.url) URL.revokeObjectURL(result.url);
     };
-  }, []);
+  }, [result]);
 
   const formatSize = (bytes: number) => {
     if (bytes < 1024) return bytes + ' B';
@@ -209,20 +211,46 @@ const ImagesToPdfZone = () => {
 
         const pdfBlob = await api.imagesToPdf(finalFiles, { pageSize, orientation, margin });
         const url = URL.createObjectURL(pdfBlob);
+        const fileName = `Document_${Date.now()}.pdf`;
+
+        setResult({
+          url,
+          fileName,
+          imageCount: items.length,
+        });
 
         const a = document.createElement('a');
         a.href = url;
-        a.download = `Document_${Date.now()}.pdf`;
+        a.download = fileName;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
-        URL.revokeObjectURL(url);
       } catch (error) {
         message.error(error instanceof Error ? error.message : 'Failed to generate PDF');
       } finally {
         setIsProcessing(false);
       }
     });
+  };
+
+  const resetAll = () => {
+    items.forEach((item) => {
+      if (item.previewUrl) URL.revokeObjectURL(item.previewUrl);
+    });
+    setItems([]);
+    if (result?.url) URL.revokeObjectURL(result.url);
+    setResult(null);
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  };
+
+  const handleDownload = () => {
+    if (!result) return;
+    const a = document.createElement('a');
+    a.href = result.url;
+    a.download = result.fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
 
   const playClick = () => window.soundManager?.playClick();
@@ -240,7 +268,26 @@ const ImagesToPdfZone = () => {
     <div className="images-to-pdf-container fade-in">
       <input type="file" accept="image/*" multiple ref={fileInputRef} onChange={handleFileSelect} style={{ display: 'none' }} />
 
-      {items.length === 0 ? (
+      {result ? (
+        <div className="workspace-main" style={{ padding: '0', paddingBottom: 0, background: 'transparent' }}>
+          <div className="compression-settings" style={{ textAlign: 'center', padding: '3rem 2rem', alignItems: 'center' }}>
+            <CheckCircle2 size={56} color="#22c55e" />
+            <h3 style={{ margin: 0, color: 'var(--text-primary)' }}>
+              Converted {result.imageCount} Image{result.imageCount === 1 ? '' : 's'} into PDF!
+            </h3>
+            <p style={{ margin: 0, color: 'var(--text-secondary)' }}>Your PDF is ready to download.</p>
+          </div>
+
+          <div className="scanner-bottom-bar">
+            <button className="bottom-select-btn" onClick={resetAll}>
+              <UploadCloud size={18} /> Convert Another
+            </button>
+            <button className="bottom-download-btn" onClick={handleDownload}>
+              <DownloadCloud size={20} /> Download PDF
+            </button>
+          </div>
+        </div>
+      ) : items.length === 0 ? (
         <div
           className={`tool-drop-zone ${flashClass}`}
           onDragOver={(e) => {

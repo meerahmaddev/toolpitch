@@ -194,9 +194,9 @@ const AccountSettings = () => {
                 <label>Confirm New Password</label>
               </div>
             </Form.Item>
-            {confirmPasswordValue && (
-              <p className={`password-match-hint ${passwordsMatch ? 'match' : 'no-match'}`}>
-                {passwordsMatch ? '✓ Passwords match' : "✗ Passwords don't match"}
+            {confirmPasswordValue && passwordsMatch && (
+              <p className="password-match-hint match">
+                ✓ Passwords match
               </p>
             )}
 

@@ -573,6 +573,36 @@
   color: #0f172a;
 }
 
+.auth-mobile-tabs {
+  display: flex;
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 1.25rem;
+  width: 100%;
+  max-width: 320px;
+}
+
+.auth-mobile-tab {
+  flex: 1;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #64748b;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.auth-mobile-tab.active {
+  background: #ffffff;
+  color: var(--color-1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  font-weight: 700;
+}
+
 .mobile-toggle {
   display: none;
   margin-top: 1.5rem;
@@ -588,8 +618,35 @@
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
+  .mobile-only {
+    display: flex !important;
+  }
+
   .auth-container {
-    height: min(600px, calc(100vh - 2rem));
+    width: min(92vw, 440px);
+    max-width: 92vw;
+    height: min(650px, calc(100vh - 2rem));
+    border-radius: 20px;
+  }
+
+  .auth-form-wrapper {
+    padding: 2rem 1.25rem 1.5rem;
+    overflow-y: auto;
+    max-height: 100%;
+    justify-content: flex-start;
+  }
+
+  .sign-up-container .auth-form-wrapper {
+    padding-top: 1.5rem;
+  }
+
+  .close-modal-btn {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    z-index: 210;
   }
 
   .overlay-container {
@@ -621,8 +678,10 @@
     pointer-events: none;
   }
 
-  .mobile-toggle {
-    display: block;
+  .auth-switch {
+    display: block !important;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
   }
 }
 
@@ -631,11 +690,11 @@
     padding: 0 1.5rem;
   }
 
-  .auth-form {
-    padding: 0 1.5rem;
+  .auth-form-wrapper {
+    padding: 1.75rem 1rem 1.25rem;
   }
 
   .auth-title {
-    font-size: 2rem;
+    font-size: 1.65rem;
   }
 }

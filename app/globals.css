@@ -40,6 +40,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 /* Google Drive Picker: Google positions the dialog relative to the document, so on a
    scrolled page it can render off-screen behind its own backdrop. Pin it to the viewport. */
 .picker-dialog-bg {
@@ -56,6 +57,12 @@ body {
   max-width: calc(100vw - 32px);
   max-height: calc(100vh - 32px);
   z-index: 2147483647 !important;
+
+/* Global select option styling for OS native dropdowns */
+select option {
+  background-color: #1a0b2e;
+  color: #ffffff;
+
 }
 
 /* Animations */
@@ -124,4 +131,105 @@ a {
   padding: 0.9rem 2rem;
   font-size: 1rem;
   border-radius: 999px;
+}
+
+/* --- Shared Tool Bottom Bar & Action Buttons --- */
+.scanner-bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  background: var(--bg-card-hover, rgba(255, 255, 255, 0.04));
+  border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+  border-radius: 0 0 12px 12px;
+  margin-top: 20px;
+}
+
+.bottom-select-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-primary, #ffffff);
+  border-radius: 10px !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.bottom-select-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.bottom-select-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.bottom-download-btn,
+.bottom-convert-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 28px;
+  background: #16a34a;
+  color: #ffffff !important;
+  border: none;
+  border-radius: 10px !important;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(22, 163, 74, 0.35);
+  white-space: nowrap;
+  flex: 1;
+}
+
+.bottom-convert-btn {
+  background: var(--primary-gradient, linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%));
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+.bottom-download-btn:hover:not(:disabled),
+.bottom-convert-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.bottom-download-btn:disabled,
+.bottom-convert-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (max-width: 640px) {
+  .scanner-bottom-bar {
+    flex-direction: column-reverse;
+    gap: 10px;
+    padding: 14px 12px;
+  }
+
+  .bottom-select-btn,
+  .bottom-download-btn,
+  .bottom-convert-btn {
+    width: 100% !important;
+    height: 50px;
+    flex: unset;
+    font-size: 0.95rem;
+    padding: 0 16px;
+    justify-content: center;
+  }
 }

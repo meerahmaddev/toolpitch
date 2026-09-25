@@ -146,9 +146,18 @@ const EditPdfZone = () => {
       const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
       const loadedPages: PageData[] = [];
 
+      // On mobile, calculate a scale that fits the PDF within the available screen
+      // width, so blocks and text stay proportionally correct without any overflow.
+      // On desktop we keep RENDER_SCALE (1.5) for crisp rendering quality.
+      const containerWidth = Math.min(window.innerWidth, 1000) - 48; // subtract padding
+      const firstPage = await pdf.getPage(1);
+      const baseViewport = firstPage.getViewport({ scale: 1 });
+      const mobileScale = containerWidth / baseViewport.width;
+      const renderScale = window.innerWidth <= 700 ? Math.min(RENDER_SCALE, mobileScale) : RENDER_SCALE;
+
       for (let i = 1; i <= pdf.numPages; i++) {
         const page = await pdf.getPage(i);
-        const viewport = page.getViewport({ scale: RENDER_SCALE });
+        const viewport = page.getViewport({ scale: renderScale });
 
         const canvas = document.createElement('canvas');
         canvas.width = viewport.width;
@@ -538,24 +547,27 @@ const EditPdfZone = () => {
         onDeleteBlock={handleBlockDelete}
       />
 
-      <PdfPageCanvas
-        canvasDataUrl={currentPage.canvasDataUrl}
-        widthPx={currentPage.widthPx}
-        heightPx={currentPage.heightPx}
-        viewport={currentPage.viewport}
-        blocks={currentPage.blocks}
-        images={imagesWithPosition}
-        editedText={editedText}
-        formattingOverrides={formattingOverrides}
-        isAddTextMode={isAddTextMode}
-        selectedBlockId={selectedBlockId}
-        onCanvasClick={handleCanvasAddText}
-        onSelectBlock={setSelectedBlockId}
-        onTextChange={handleTextChange}
-        onMoveBlock={handleBlockMove}
-        onDeleteBlock={handleBlockDelete}
-        onImageMove={handleImageMove}
-      />
+
+      <div className="edit-pdf-scroll-wrapper" id="edit-pdf-canvas-outer">
+        <PdfPageCanvas
+          canvasDataUrl={currentPage.canvasDataUrl}
+          widthPx={currentPage.widthPx}
+          heightPx={currentPage.heightPx}
+          viewport={currentPage.viewport}
+          blocks={currentPage.blocks}
+          images={imagesWithPosition}
+          editedText={editedText}
+          formattingOverrides={formattingOverrides}
+          isAddTextMode={isAddTextMode}
+          selectedBlockId={selectedBlockId}
+          onCanvasClick={handleCanvasAddText}
+          onSelectBlock={setSelectedBlockId}
+          onTextChange={handleTextChange}
+          onMoveBlock={handleBlockMove}
+          onDeleteBlock={handleBlockDelete}
+          onImageMove={handleImageMove}
+        />
+      </div>
 
       {currentPage.blocks.length === 0 && (
         <p style={{ textAlign: 'center', opacity: 0.6, marginTop: 12 }}>

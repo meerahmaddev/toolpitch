@@ -55,6 +55,12 @@
   cursor: pointer;
 }
 
+.page-setup-field select option {
+  background-color: #1a0b2e;
+  color: #ffffff;
+  padding: 8px;
+}
+
 .empty-scanner-state {
   height: 100%;
   display: flex;
@@ -85,22 +91,24 @@
 }
 
 .scanner-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  width: 100%;
 }
 
 .scanner-card {
-  width: 220px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
+  width: 100%;
+  background: var(--bg-card, rgba(255, 255, 255, 0.03));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   transition: transform 0.2s, box-shadow 0.2s;
   cursor: grab;
+  position: relative;
 }
 
 .scanner-card:active {
@@ -108,8 +116,8 @@
 }
 
 .scanner-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 .scanner-card.dragging {
@@ -121,93 +129,78 @@
   border: 2px dashed #8b5cf6;
 }
 
-
-
-.file-size {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  font-weight: 500;
-}
-
-.pdf-card-actions {
-  display: flex;
-  gap: 4px;
-}
-
-.pdf-icon-btn {
-  background: white;
-  border: 1px solid #e5e7eb;
-  color: #374151;
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.1s, box-shadow 0.2s;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-}
-
-.pdf-icon-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  color: #000;
-}
-
-.pdf-icon-btn.delete {
-  color: #ef4444;
-}
-
-.pdf-icon-btn.delete:hover {
-  background: #fee2e2;
-  border-color: #fca5a5;
-}
-
-.card-image-wrapper {
-  height: 250px;
+.card-preview {
+  height: 200px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-card);
+  background: #ffffff;
   overflow: hidden;
-  cursor: pointer;
+  border-radius: 12px 12px 0 0;
 }
 
-.overlay-top {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  z-index: 10;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 100%);
-}
-
-.file-size {
-  font-size: 0.8rem;
-  color: white;
-  font-weight: 600;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
-  background: rgba(0,0,0,0.4);
-  padding: 2px 8px;
-  border-radius: 4px;
-}
-
-.pdf-card-actions {
-  display: flex;
-  gap: 6px;
-}
-
-.card-image-wrapper img {
-  max-width: 100%;
-  max-height: 100%;
+.card-preview img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  transition: transform 0.3s ease;
+  padding: 8px;
+  transition: transform 0.2s ease;
+}
+
+.card-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(15, 10, 30, 0.75);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  width: 24px;
+  height: 24px;
+  border-radius: 50% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 5;
+}
+
+.card-actions-overlay {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 5px;
+  z-index: 5;
+}
+
+.card-action-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50% !important;
+  background: rgba(15, 10, 30, 0.75);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  backdrop-filter: blur(4px);
+  padding: 0;
+}
+
+.card-action-btn:hover {
+  background: var(--color-3, #7b3183);
+  transform: scale(1.1);
+  color: #ffffff;
+}
+
+.card-action-btn.danger:hover {
+  background: #ef4444;
+  border-color: #ef4444;
 }
 
 .card-footer {
@@ -218,8 +211,8 @@
 }
 
 .file-name {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
+  font-size: 0.78rem;
+  color: var(--text-secondary, #cbd5e1);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -227,10 +220,10 @@
 }
 
 .add-more-card {
-  width: 180px;
-  height: 260px; /* roughly matches standard card height */
-  border: 2px dashed var(--border-color);
-  border-radius: 8px;
+  width: 100%;
+  min-height: 240px;
+  border: 2px dashed var(--border-color, rgba(255, 255, 255, 0.15));
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -238,23 +231,24 @@
   cursor: pointer;
   color: var(--text-secondary);
   transition: 0.2s;
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .add-more-card:hover {
-  background: rgba(255,255,255,0.02);
+  background: rgba(255, 255, 255, 0.05);
   border-color: #8b5cf6;
   color: #8b5cf6;
 }
 
 .add-more-circle {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  border-radius: 50% !important;
   border: 1px solid currentColor;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 /* Bottom Action Bar */
@@ -421,4 +415,58 @@
 
 .save-btn:hover {
   box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+}
+
+@media (max-width: 640px) {
+  .page-setup-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .page-setup-field select {
+    width: 100%;
+  }
+
+  .scanner-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .card-preview {
+    height: 140px;
+  }
+
+  .card-actions-overlay {
+    top: 5px;
+    right: 5px;
+    gap: 4px;
+  }
+
+  .card-action-btn {
+    width: 24px;
+    height: 24px;
+  }
+
+  .card-action-btn svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .card-badge {
+    top: 5px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+  }
+
+  .add-more-card {
+    min-height: 180px;
+  }
+
+  .file-name {
+    font-size: 0.7rem;
+  }
 }

@@ -57,7 +57,8 @@ export const toolsData: ToolDef[] = [
 
   // 3. Editor Tools
   { id: 301, title: 'Edit PDF', slug: 'edit-pdf', description: 'Click into existing PDF text and edit it in place, or reposition images and logos.', category: 'Editor Tools', icon: Edit3, isNew: true },
-  { id: 302, title: 'Image Compressor', slug: 'image-compressor', description: 'Reduce the file size of your images while keeping good quality, with format and quality control.', category: 'Editor Tools', icon: DownloadCloud, isNew: true },
+  { id: 302, title: 'Compress PDF', slug: 'compress-pdf', description: 'Reduce PDF file size while maintaining high visual quality using Ghostscript.', category: 'Editor Tools', icon: FileText, isNew: true },
+  { id: 303, title: 'Image Compressor', slug: 'image-compressor', description: 'Reduce the file size of your images while keeping good quality, with format and quality control.', category: 'Editor Tools', icon: DownloadCloud, isNew: true },
 
   // 4. Voice Tools
   { id: 401, title: 'Text to Speech', slug: 'text-to-speech', description: 'Convert written text into natural-sounding speech with various voices and accents.', category: 'Voice Tools', icon: Mic, isNew: true },

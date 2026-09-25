@@ -241,3 +241,77 @@
   align-items: center;
   gap: 8px;
 }
+
+@media (max-width: 600px) {
+  .success-page-container {
+    padding: 2rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .success-header-wrapper {
+    margin-bottom: 1.5rem;
+  }
+
+  .success-page-title {
+    font-size: 1.6rem;
+    word-break: break-word;
+    text-align: center;
+  }
+
+  .success-card {
+    width: 100%;
+    gap: 16px;
+    margin-bottom: 2rem;
+  }
+
+  .success-main-actions {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .mega-download-btn {
+    flex: 1;
+    min-width: 0;
+    height: 56px;
+    padding: 0 16px;
+    font-size: 1.1rem;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .back-circle-btn {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+
+  .integration-icons {
+    gap: 6px;
+  }
+
+  .int-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .success-bottom-actions {
+    width: 100%;
+  }
+
+  .continue-box,
+  .privacy-box {
+    padding: 16px 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .security-badges {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}

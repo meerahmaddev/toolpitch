@@ -55,8 +55,14 @@
     top: -220px;
   }
   .converter-section {
-    padding: 3rem 1.25rem;
+    padding: 2rem 0.75rem;
     margin-top: 0;
+  }
+  .drag-drop-zone {
+    padding: 2rem 1rem;
+  }
+  .drag-drop-zone.has-file {
+    padding: 0.5rem;
   }
 }
 
@@ -73,6 +79,15 @@
   text-align: center;
   transition: all 0.3s ease;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.drag-drop-zone.has-file {
+  padding: 1.5rem 1rem;
+  border-style: solid;
+  border-color: rgba(123, 49, 131, 0.2);
 }
 
 .drag-drop-zone:hover {

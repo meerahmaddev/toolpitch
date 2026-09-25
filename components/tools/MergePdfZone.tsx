@@ -207,16 +207,12 @@ const MergePdfZone = () => {
             <p style={{ margin: 0, color: 'var(--text-secondary)' }}>Your merged PDF is ready to download.</p>
           </div>
 
-          <div className="scanner-bottom-bar" style={{ marginTop: '20px' }}>
+          <div className="scanner-bottom-bar">
             <button className="bottom-select-btn" onClick={resetAll}>
               <UploadCloud size={18} /> Merge Another
             </button>
-            <button
-              className="primary-btn"
-              onClick={handleDownload}
-              style={{ padding: '12px 30px', fontSize: '1.1rem', background: '#16a34a', border: 'none', borderRadius: '30px', fontWeight: 'bold', display: 'flex', alignItems: 'center' }}
-            >
-              <DownloadCloud size={20} style={{ marginRight: '8px' }} /> Download Merged PDF
+            <button className="bottom-download-btn" onClick={handleDownload}>
+              <DownloadCloud size={20} /> Download Merged PDF
             </button>
           </div>
         </div>
