@@ -30,13 +30,13 @@ export async function sendOtpEmail(to: string, otp: string): Promise<void> {
     // that doesn't match the authenticated SMTP_USER, so it has to be that
     // account rather than a made-up domain.
     const info = await getTransporter().sendMail({
-      from: `"Convertify Security" <${process.env.SMTP_USER}>`,
+      from: `"Convertifox Security" <${process.env.SMTP_USER}>`,
       to,
-      subject: 'Your Convertify Verification Code',
+      subject: 'Your Convertifox Verification Code',
       text: `Your verification code is: ${otp}`,
       html: `
         <div style="font-family: Arial, sans-serif; text-align: center; max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #eaeaea; border-radius: 10px;">
-          <h2 style="color: #683bbd;">Convertify Verification</h2>
+          <h2 style="color: #683bbd;">Convertifox Verification</h2>
           <p>Please use the following 4-digit code to verify your account.</p>
           <div style="margin: 20px auto; padding: 15px; background: #f3f4f6; border-radius: 8px; font-size: 32px; font-weight: bold; letter-spacing: 5px; color: #1f2937;">
             ${otp}

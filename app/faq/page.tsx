@@ -7,8 +7,8 @@ import './FAQ.css';
 
 const faqs = [
   {
-    question: 'Is Convertify free to use?',
-    answer: "Yes. Convertify is completely free — there's no paid or premium tier.",
+    question: 'Is Convertifox free to use?',
+    answer: "Yes. Convertifox is completely free — there's no paid or premium tier.",
   },
   {
     question: 'Do I need to create an account?',
@@ -18,7 +18,7 @@ const faqs = [
   {
     question: 'What file types can I convert?',
     answer:
-      'Convertify supports PDF, Word (DOC/DOCX), Excel (XLS/XLSX), PowerPoint (PPT/PPTX), common image formats (JPG, PNG, WEBP, HEIC, SVG), and audio (for Text-to-Speech / Speech-to-Text) — 20+ tools in total across PDF, Image, Editor, and Voice categories.',
+      'Convertifox supports PDF, Word (DOC/DOCX), Excel (XLS/XLSX), PowerPoint (PPT/PPTX), common image formats (JPG, PNG, WEBP, HEIC, SVG), and audio (for Text-to-Speech / Speech-to-Text) — 20+ tools in total across PDF, Image, Editor, and Voice categories.',
   },
   {
     question: 'What are the file size limits?',
@@ -28,7 +28,7 @@ const faqs = [
   {
     question: 'How long are my files kept?',
     answer:
-      "Files — both uploaded and converted — are automatically and permanently deleted after 24 hours. This applies whether you're logged in or using Convertify as a guest.",
+      "Files — both uploaded and converted — are automatically and permanently deleted after 24 hours. This applies whether you're logged in or using Convertifox as a guest.",
   },
   {
     question: 'Is my data secure?',
@@ -50,14 +50,14 @@ const faqs = [
   },
   {
     question: 'Is there a paid or premium plan?',
-    answer: 'No — Convertify is entirely free with no premium tier or upgrade option.',
+    answer: 'No — Convertifox is entirely free with no premium tier or upgrade option.',
   },
   {
     question: 'Is there a public API for developers?',
     answer: "Not currently — there's no public/developer API available today.",
   },
   {
-    question: 'What happens to my file if I use Convertify without an account?',
+    question: 'What happens to my file if I use Convertifox without an account?',
     answer:
       "It still works, but the file exists only for the 24-hour retention window and isn't saved to any Workspace (since that requires an account) — so make sure to download it before it expires.",
   },
@@ -70,7 +70,7 @@ export default function FAQPage() {
     <div className="legal-page-container">
       <div className="legal-header">
         <h1>Frequently Asked Questions</h1>
-        <p>Everything you need to know about using Convertify.</p>
+        <p>Everything you need to know about using Convertifox.</p>
       </div>
 
       <div className="faq-list">

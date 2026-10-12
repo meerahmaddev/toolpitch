@@ -69,7 +69,7 @@ export default function DevToolsBlocker() {
         <div style={{ fontSize: 48, marginBottom: 16 }}>🛡️</div>
         <h2 style={{ fontSize: 22, fontWeight: 'bold', marginBottom: 10 }}>Developer Tools Detected</h2>
         <p style={{ color: '#9ca3af', fontSize: 14, lineHeight: 1.5, marginBottom: 20 }}>
-          Security policy: Please close Inspect / Developer Tools to continue using Convertify.
+          Security policy: Please close Inspect / Developer Tools to continue using Convertifox.
         </p>
         <button
           onClick={() => window.location.reload()}

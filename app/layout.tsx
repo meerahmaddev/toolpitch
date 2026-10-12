@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Convertify',
+  title: 'Convertifox',
   description: 'The all-in-one workspace for your digital files. Fast, secure, and completely free.',
 };
 

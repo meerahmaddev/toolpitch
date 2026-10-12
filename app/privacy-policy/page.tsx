@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './LegalPage.css';
 
-export const metadata: Metadata = { title: 'Privacy Policy | Convertify' };
+export const metadata: Metadata = { title: 'Privacy Policy | Convertifox' };
 
 export default function PrivacyPolicy() {
   return (
@@ -13,11 +13,11 @@ export default function PrivacyPolicy() {
 
       <div className="legal-content">
         <h2>1. Introduction</h2>
-        <p>At Convertify, we take your privacy and the security of your files seriously. This Privacy Policy explains how we collect, use, and protect your information when you use our file conversion services.</p>
+        <p>At Convertifox, we take your privacy and the security of your files seriously. This Privacy Policy explains how we collect, use, and protect your information when you use our file conversion services.</p>
 
         <h2>2. File Processing and Storage</h2>
         <p>
-          When you upload files to Convertify for processing, they are securely transmitted using industry-standard encryption.{' '}
+          When you upload files to Convertifox for processing, they are securely transmitted using industry-standard encryption.{' '}
           <strong>We do not read, analyze, or use your files for training AI models.</strong>
         </p>
 

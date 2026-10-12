@@ -42,7 +42,7 @@ const AuthModal = () => {
     successMsg: string
   ) => {
     soundManager.playSuccess();
-    soundManager.speak(`Welcome to Convertify, ${response.user.name}`);
+    soundManager.speak(`Welcome to Convertifox, ${response.user.name}`);
     message.success(successMsg);
 
     persistSession(response);
@@ -157,7 +157,7 @@ const AuthModal = () => {
             </div>
 
             <h1 className="auth-title">Create Account</h1>
-            <p className="auth-subtitle">Join Convertify and transform your files.</p>
+            <p className="auth-subtitle">Join Convertifox and transform your files.</p>
 
             <Form form={signupForm} name="signup" onFinish={onSignup} size="large" className="antd-auth-form" scrollToFirstError>
               <Form.Item name="username" rules={[{ required: true, message: 'Please enter a username' }]}>

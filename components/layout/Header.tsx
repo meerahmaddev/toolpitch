@@ -216,9 +216,9 @@ const Header = () => {
               style={{ textDecoration: 'none' }}
             >
               <div className="logo-icon" style={{ display: 'flex', alignItems: 'center' }}>
-                <img src="/logo.svg" alt="Convertify" style={{ width: '28px', height: '28px' }} />
+                <img src="/logo.svg" alt="Convertifox" style={{ width: '28px', height: '28px' }} />
               </div>
-              <span className="logo-text">Convertify</span>
+              <span className="logo-text">Convertifox</span>
             </Link>
 
             {/* Desktop Navigation: Image -> PDF -> Voice -> Editor -> Workspace -> FAQs */}

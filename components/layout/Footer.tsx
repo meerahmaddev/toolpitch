@@ -6,8 +6,8 @@ const Footer = () => {
       <div className="footer-content">
         <div className="footer-brand">
           <div className="footer-logo">
-            <img src="/logo.svg" alt="Convertify" className="footer-logo-img" />
-            <span>Convertify</span>
+            <img src="/logo.svg" alt="Convertifox" className="footer-logo-img" />
+            <span>Convertifox</span>
           </div>
           <p className="footer-description">
             The all-in-one workspace for your digital files. Fast, secure, and completely free.
@@ -16,7 +16,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Convertify. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Convertifox. All rights reserved.</p>
       </div>
     </footer>
   );
